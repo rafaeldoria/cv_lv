@@ -1,0 +1,36 @@
+RewriteEngine on
+RewriteOptions inherit
+
+#Order deny,allow
+#deny from all
+
+#allow from 187.72.162.208/28
+#allow from 10.1.1.0/8
+#allow from 177.52.161.146
+#allow from 177.52.161.12
+#allow from 177.52.161.200
+
+# Set the “ea-php70” package as the default “PHP” programming language.
+# php -- END cPanel-generated handler, do not edit
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php5_module>
+   php_flag display_errors Off
+   php_value max_execution_time 30
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 512M
+   php_value post_max_size 128M
+   php_value upload_max_filesize 64M
+</IfModule>
+# END cPanel-generated php ini directives, do not edit
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php70” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddType application/x-httpd-ea-php71 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
