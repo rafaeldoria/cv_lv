@@ -5,7 +5,8 @@
         <painel titulo="Clientes">
             <tabela 
                 v-bind:titulos="['#','Nome','E-mail','Usuário','Cliente Desde']"
-                v-bind:itens="[['1','João','email@email','joao','01/01/2000'],['2','José','email@email','jose','02/02/2002']]"
+                v-bind:itens="[['1','João','email@email','joao','01/01/2000'],['2','Cláudio','email@email','jose','02/02/2002']]"
+                ordem="asc" ordemcol="0"
                 criar="#novo"
                 detalhe="#detalhe"
                 editar="#editar"
