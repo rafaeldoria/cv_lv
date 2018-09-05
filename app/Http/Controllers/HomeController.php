@@ -22,7 +22,10 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    {   
+        $listaPaginas = json_encode([
+            ["titulo" => "Home","url" => ""],
+        ]);
+        return view('home', compact('listaPaginas'));
     }
 }

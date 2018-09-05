@@ -3,6 +3,7 @@
 @section('content')
     <pagina tamanho="10">
         <painel titulo="Dashboard">
+        <breadcrumb v-bind:listapaginas="{{$listaPaginas}}"></breadcrumb>
             <div class="row">
                 <div class="col-md-4 col-sm-4">
                     <caixa qtd="25" titulo="Clientes" url="{{route('clientes.index')}}" cor="#f39c12 " icone="ion ion-pie-graph"></caixa>

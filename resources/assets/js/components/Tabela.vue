@@ -62,6 +62,7 @@
             }
         },
         computed: {
+            //busca e ordenação listagem
             lista:function() {
 
                 let ordem = this.ordemAux;

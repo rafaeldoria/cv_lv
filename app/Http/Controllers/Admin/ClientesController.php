@@ -13,8 +13,12 @@ class ClientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.clientes.index');
+    {   
+        $listaPaginas = json_encode([
+            ["titulo" => "Home","url" => route("home")],
+            ["titulo" => "Clientes","url" => ""],
+        ]);
+        return view('admin.clientes.index', compact('listaPaginas'));
     }
 
     /**

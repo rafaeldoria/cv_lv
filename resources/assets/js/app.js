@@ -20,6 +20,9 @@ Vue.component('painel', require('./components/Painel.vue'));
 Vue.component('caixa', require('./components/Caixa.vue'));
 Vue.component('pagina', require('./components/Pagina.vue'));
 Vue.component('tabela', require('./components/Tabela.vue'));
+Vue.component('breadcrumb', require('./components/Breadcrumb.vue'));
+Vue.component('modal', require('./components/modal/Modal.vue'));
+Vue.component('modalLink', require('./components/modal/ModalLink.vue'));
 
 const app = new Vue({
     el: '#app'
