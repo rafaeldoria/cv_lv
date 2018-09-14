@@ -18,7 +18,12 @@ class ClientesController extends Controller
             ["titulo" => "Home","url" => route("home")],
             ["titulo" => "Clientes","url" => ""],
         ]);
-        return view('admin.clientes.index', compact('listaPaginas'));
+
+        $clientes = json_encode([
+            ["id"=>1,"nome"=>"José","email"=>"jose@email.com","usuario"=>"Jose","created"=>"01/01/2001"],
+            ["id"=>2,"nome"=>"Osvaldo","email"=>"osvaldo@email.com","usuario"=>"osvaldo","created"=>"02/02/2002"],
+        ]);
+        return view('admin.clientes.index', compact('listaPaginas','clientes'));
     }
 
     /**
