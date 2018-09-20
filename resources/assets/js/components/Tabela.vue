@@ -2,7 +2,7 @@
     <div class="">
         <div class="form-inline">
             <a v-if="criar && !modal" v-bind:href="criar">Criar</a>
-            <modal-link tipo="link" nomeModal="adicionar" titulo="criar" css="btn btn-info"></modal-link>
+            <modal-link v-if="editar && modal" tipo="link" nomemodal="adicionar" titulomodal="Criar" css=""></modal-link>
             <div class="form-group pull-right">
                 <input type="search" class="form-control" placeholder="Buscar" v-model="buscar">
             </div>
@@ -19,24 +19,33 @@
                     <td v-for="i in item" :key="i.id">{{i}}</td>
 
                     <td v-if="detalhe || editar || excluir">
-                        <form v-bind:id="index" v-if="excluir && token" v-bind:action="excluir">
+                        <form v-bind:id="index" v-if="excluir && token" v-bind:action="excluir" method="post">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" v-bind:value="token">
-                            <a v-if="detalhe" v-bind:href="detalhe">Detalhes |</a>
+
+                            <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhes |</a>
+                            <modal-link v-if="detalhe && modal" v-bind:item="item" tipo="link" nomemodal="detalhes" titulomodal="Detalhes |" css=""></modal-link>
+
                             <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-                            <modal-link v-if="editar && modal" tipo="link" nomeModal="editar" titulo="Editar |" css="btn btn-info btn-sm"></modal-link>
-                            <a href="" v-on:onclick="submit_form(index)">Excluir</a>
+                            <modal-link v-if="editar && modal" v-bind:item="item" tipo="link" nomemodal="editar" titulomodal="Editar |" css=""></modal-link>
+
+                            <a href="#" v-on:onclick="submit_form(index)">Excluir</a>
                         </form>
                         <span v-if="!token">
-                            <a v-if="detalhe" v-bind:href="detalhe">Detalhes |</a>
+                            <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhes |</a>
+                            <modal-link v-if="detalhe && modal" v-bind:item="item" tipo="link" nomemodal="detalhes" titulomodal="Detalhes |" css=""></modal-link>
+
                             <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-                            <modal-link v-if="editar && modal" tipo="link" nomeModal="editar" titulo="Editar |" css="btn btn-info btn-sm"></modal-link>
+                            <modal-link v-if="editar && modal" v-bind:item="item" tipo="link" nomemodal="editar" titulomodal="Editar |" css=""></modal-link>
+
                             <a v-if="excluir" v-bind:href="excluir">Excluir</a>
                         </span>
                         <span v-if="token && !excluir">
-                            <a v-if="detalhe" v-bind:href="detalhe">Detalhes |</a>
+                            <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhes |</a>
+                            <modal-link v-if="detalhe && modal" v-bind:item="item" tipo="link" nomemodal="detalhes" titulomodal="Detalhes |" css=""></modal-link>
+
                             <a v-if="editar && !modal" v-bind:href="editar">Editar |</a>
-                            <modal-link v-if="editar && modal" tipo="link" nomeModal="editar" titulo="Editar |" css="btn btn-info btn-sm"></modal-link>
+                            <modal-link v-if="editar && modal" v-bind:item="item" tipo="link" nomemodal="editar" titulomodal="Editar |" css=""></modal-link>
                         </span>
                     </td>
                 </tr>
@@ -91,6 +100,7 @@
 
                 if(this.buscar) {
                     return this.itens.filter(res => {
+                        res = Object.values(res);
                         for (let k = 0; k < res.length; k++) {
                             const element = res[k];
                             if((res[k] + "").toLowerCase().indexOf((this.buscar + "").toLowerCase()) >= 0) {

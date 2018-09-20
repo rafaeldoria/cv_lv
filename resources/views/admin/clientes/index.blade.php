@@ -4,12 +4,11 @@
     <pagina tamanho="12">
         <painel titulo="Clientes">
             <breadcrumb v-bind:listapaginas="{{$listaPaginas}}"></breadcrumb>
-
+            
             <tabela 
                 v-bind:titulos="['#','Nome','E-mail','Usuário','Cliente Desde']"
                 v-bind:itens="{{$clientes}}"
                 ordem="asc" ordemcol="0"
-                criar="#criar"
                 detalhe="#detalhe"
                 editar="#editar"
                 excluir="#delete"
@@ -19,63 +18,48 @@
             </tabela>
         </painel>
     </pagina>
-    <modal nome="adicionar">
-        <painel titulo="Adicionar">
-            <formulario css="" action="#" method="delete" enctype="" token="">
-                <div class="form-group">
-                    <label for="Nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
-                </div>
-                <div class="form-group">
-                    <label for="E-mail">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
-                </div>
-                <div class="form-group">
-                    <label for="Usuario">Usuário</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário">
-                </div>
-                <button class="btn btn-info">Adicionar</button>
-            </formulario>
-        </painel>
+    <modal nome="adicionar" titulo="Adicionar">
+        <formulario id="addCliente" css="" action="#" method="delete" enctype="" token="">
+            <div class="form-group">
+                <label for="Nome">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+            </div>
+            <div class="form-group">
+                <label for="E-mail">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
+            </div>
+            <div class="form-group">
+                <label for="Usuario">Usuário</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário">
+            </div>
+        </formulario>
+        <span slot="buttons">
+            <button form="addCliente" class="btn btn-info">Adicionar</button>
+        </span>
     </modal>
 
-    <modal nome="editar">
-        <painel titulo="Editar">
-            <formulario css="" action="#" method="delete" enctype="" token="">
-                <div class="form-group">
-                    <label for="Nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
-                </div>
-                <div class="form-group">
-                    <label for="E-mail">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
-                </div>
-                <div class="form-group">
-                    <label for="Usuario">Usuário</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário">
-                </div>
-                <button class="btn btn-info">Atualizar</button>
-            </formulario>
-        </painel>
+    <modal nome="editar" titulo="Editar">
+        <formulario id="editCliente" css="" action="#" method="delete" enctype="" token="">
+            <div class="form-group">
+                <label for="Nome">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" v-model="$store.state.registro.nome" placeholder="Nome">
+            </div>
+            <div class="form-group">
+                <label for="E-mail">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" v-model="$store.state.registro.email" placeholder="E-mail">
+            </div>
+            <div class="form-group">
+                <label for="Usuario">Usuário</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" v-model="$store.state.registro.usuario" placeholder="Usuário">
+            </div>
+        </formulario>
+        <span slot="buttons">
+            <button form="editCliente" class="btn btn-info">Atualizar</button>
+        </span>
     </modal>
 
-    <modal nome="detalhes">
-        <painel titulo="Detalhes">
-            <formulario css="" action="#" method="delete" enctype="" token="">
-                <div class="form-group">
-                    <label for="Nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
-                </div>
-                <div class="form-group">
-                    <label for="E-mail">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
-                </div>
-                <div class="form-group">
-                    <label for="Usuario">Usuário</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário">
-                </div>
-                <button class="btn btn-info">Adicionar</button>
-            </formulario>
-        </painel>
+    <modal nome="detalhes" v-bind:titulo="$store.state.registro.nome">
+        <p>@{{$store.state.registro.email}}</p> <!-- @ diferencia javascript do php-->
+        <p>@{{$store.state.registro.usuario}}</p>
     </modal>
 @endsection
