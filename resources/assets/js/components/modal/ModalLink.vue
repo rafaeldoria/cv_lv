@@ -16,10 +16,13 @@
 
 <script>
     export default {
-        props: ['tipo','nomemodal', 'titulomodal','css','item'],
+        props: ['tipo','nomemodal', 'titulomodal','css','item','url'],
         methods:{
             getDados:function(){
-                this.$store.commit('setRegistro',this.item);
+                axios.get(this.url+this.item.id).then(res => {
+                    this.$store.commit('setRegistro',res.data);
+                }); //requisição http com axios
+                //this.$store.commit('setRegistro',this.item);
             }
         }
     }

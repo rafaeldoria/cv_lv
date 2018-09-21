@@ -22,3 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware(['auth'])->prefix('admin')->namespace('Admin')->group(function () {
     Route::resource('clientes', 'ClientesController');
 });
+

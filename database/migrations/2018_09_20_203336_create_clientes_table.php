@@ -21,6 +21,9 @@ class CreateClientesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        /*Atualizar usuario para usuario_id para FK com users
+         $table->foreign('user_id')->references('id')->on('users');
+         Atualizar form para receber o ID de user*/
     }
 
     /**

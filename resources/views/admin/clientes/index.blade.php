@@ -2,6 +2,18 @@
 
 @section('content')
     <pagina tamanho="12">
+
+        @if($errors->all())
+        <div class="alert alert-warning alert-dismissible text-center" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @foreach ($errors->all() as $key => $value)
+                <li>{{$value}}</li>
+            @endforeach
+        </div>
+        @endif
+
         <painel titulo="Clientes">
             <breadcrumb v-bind:listapaginas="{{$listaPaginas}}"></breadcrumb>
             
@@ -9,7 +21,7 @@
                 v-bind:titulos="['#','Nome','E-mail','Usuário','Cliente Desde']"
                 v-bind:itens="{{$clientes}}"
                 ordem="asc" ordemcol="0"
-                detalhe="#detalhe"
+                detalhe="/admin/clientes/"
                 editar="#editar"
                 excluir="#delete"
                 token="132465"
@@ -19,14 +31,14 @@
         </painel>
     </pagina>
     <modal nome="adicionar" titulo="Adicionar">
-        <formulario id="addCliente" css="" action="#" method="delete" enctype="" token="">
+        <formulario id="addCliente" css="" action="{{route('clientes.store')}}" method="post" token="{{csrf_token()}}">
             <div class="form-group">
                 <label for="Nome">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="{{old('nome')}}">
             </div>
             <div class="form-group">
                 <label for="E-mail">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
+                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" value="{{old('email')}}">
             </div>
             <div class="form-group">
                 <label for="Usuario">Usuário</label>
